@@ -5,15 +5,40 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+    <meta name="theme-color" content="#214C3B" />
+    <meta name="color-scheme" content="light" />
     <meta name="description" content="Jóvenes en Misión SMP - Sistema de Investigación, Planificación y Ejecución de la Obra Social Post-Confirmación. Parroquia San Martín de Porres, Tarija - Bolivia." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
     <title>Jóvenes en Misión SMP | La fe se vive sirviendo</title>
   </head>
-  <body class="bg-white text-neutral-900 antialiased selection:bg-red-600 selection:text-white">
-    <div id="root"></div>
+  <body class="bg-white text-neutral-900 antialiased selection:bg-emerald-100 selection:text-emerald-950">
+    <div id="root">
+      <main id="startup-fallback" role="status" aria-live="polite">
+        <div class="startup-mark">✦</div>
+        <p class="startup-eyebrow">PARROQUIA SAN MARTÍN DE PORRES · TARIJA</p>
+        <h1>Jóvenes en Misión SMP</h1>
+        <p class="startup-copy">Preparando la experiencia de misión…</p>
+        <div class="startup-loader" aria-hidden="true"></div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        var timer = window.setTimeout(function () {
+          var root = document.getElementById('root');
+          if (!root || root.querySelector('#startup-fallback') === null) return;
+          root.innerHTML = '<main class="startup-error" role="alert"><div class="startup-mark">!</div><p class="startup-eyebrow">JÓVENES EN MISIÓN SMP</p><h1>No pudimos cargar la aplicación</h1><p>Comprueba tu conexión y vuelve a cargar la página. Si el problema continúa, comparte esta pantalla con la coordinación.</p><button type="button" onclick="window.location.reload()">Volver a intentar</button><small>Si en la computadora funciona y en el teléfono no, confirma que ambos estén usando exactamente la misma dirección de Vercel.</small></main>';
+        }, 9000);
+        window.addEventListener('load', function () {
+          window.setTimeout(function () {
+            var root = document.getElementById('root');
+            if (root && root.querySelector('#startup-fallback') === null) window.clearTimeout(timer);
+          }, 100);
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
