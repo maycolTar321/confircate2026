@@ -1,0 +1,16 @@
+JÓVENES EN MISIÓN SMP — MAQUETA RESPONSIVE V3
+
+Archivos:
+- index.html: maqueta completa.
+- LOGO.png: logotipo incluido en el proyecto.
+
+RESPONSIVE:
+Se añadieron ajustes para móviles estrechos (320–340 px), teléfonos Android/iPhone, tablets, laptops, escritorio, áreas seguras y orientación horizontal.
+
+Para probar:
+1. Abre index.html en Chrome.
+2. En VS Code puedes usar Live Server.
+3. Para publicar en Vercel, coloca index.html y LOGO.png en la raíz del proyecto.
+4. Esta maqueta es demostrativa: las respuestas no se envían a Google Sheets.
+
+Nota: el responsive está ajustado en CSS, pero conviene comprobar los botones y formularios en dispositivos reales antes de usarlo con participantes.
