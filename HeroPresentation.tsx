@@ -3,9 +3,9 @@ import { PillarId, PillarInfo } from '../../types';
 import { PILLARS, PRIMARY_PILLAR_KEYS } from '../../config/pillars';
 import { PillarImage } from '../common/PillarImage';
 import { PillarDetailModal } from './PillarDetailModal';
-import { 
-  ArrowRight, Church, HeartHandshake, Smile, Sprout, Sparkles, MapPin, 
-  BookOpen, ChevronDown, Flame, CheckCircle2, Award 
+import {
+  ArrowRight, HeartHandshake, Sprout, Sparkles, BookOpen,
+  ChevronDown, Church, MapPin, CheckCircle2
 } from 'lucide-react';
 
 interface HeroPresentationProps {
@@ -13,17 +13,15 @@ interface HeroPresentationProps {
   surveyCount: number;
 }
 
-export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurvey, surveyCount }) => {
+const pillarIcon = (id: string) => {
+  if (id === 'casa_comun' || id === 'ecologia') return Sprout;
+  if (id === 'corazones_en_accion') return HeartHandshake;
+  return Sparkles;
+};
+
+export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurvey }) => {
   const pillarsSectionRef = useRef<HTMLDivElement>(null);
   const [selectedPillarForModal, setSelectedPillarForModal] = useState<PillarInfo | null>(null);
-
-  const handleDiscoverMissionClick = () => {
-    pillarsSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleOpenPillarDetail = (pillar: PillarInfo) => {
-    setSelectedPillarForModal(pillar);
-  };
 
   const handleChooseMission = (pillar: PillarInfo) => {
     setSelectedPillarForModal(null);
@@ -31,218 +29,78 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
   };
 
   return (
-    <div className="mission-home space-y-8 sm:space-y-12 py-2 sm:py-5">
-      
-      {/* 1. PORTADA */}
-      <section className="mission-hero relative overflow-hidden rounded-2xl sm:rounded-[2rem] text-[#303632] p-5 sm:p-9 lg:p-12 border border-[#DCE5DF]">
-        
-        {/* Luces sutiles de fondo en verde bosque suave */}
-        <div className="mission-orb mission-orb--one absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" />
-        <div className="mission-orb mission-orb--two absolute -bottom-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="mission-hero__content relative z-10 max-w-4xl mx-auto text-center space-y-4 sm:space-y-5">
-          
-          {/* Bloque Destacado de Parroquia */}
-          <div className="flex flex-col items-center justify-center gap-1.5">
-            <span className="mission-eyebrow text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#214C3B] bg-[#E4EEE8] px-3.5 py-1.5 rounded-full border border-[#214C3B]/15">
-              Comunidad Eclesial & Pastoral Juvenil
-            </span>
-            <h2 className="mission-parish-title text-lg sm:text-2xl md:text-3xl font-serif font-black tracking-wide text-[#303632] leading-tight mt-1">
-              PARROQUIA SAN MARTÍN DE PORRES
-            </h2>
-            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-[#737B76] font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#214C3B] inline-block" />
-              <span className="tracking-wider uppercase text-[11px] sm:text-xs">Tarija, Bolivia</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#214C3B] inline-block" />
-            </div>
-          </div>
-
-          {/* Título Principal */}
-          <div className="space-y-1.5 pt-2 border-t border-[#737B76]/15">
-            <h1 className="mission-title text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight text-[#303632] leading-tight">
-              JÓVENES EN MISIÓN SMP
-            </h1>
-
-            {/* Lema */}
-            <p className="mission-motto text-base sm:text-xl lg:text-2xl font-serif font-extrabold italic text-[#214C3B] tracking-wide flex items-center justify-center gap-2">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#214C3B] shrink-0" />
-              <span>LA FE SE VIVE SIRVIENDO.</span>
-            </p>
-          </div>
-
-          {/* Texto de la Portada */}
-          <p className="mission-description text-sm sm:text-base lg:text-lg text-[#59645D] font-normal leading-relaxed max-w-2xl mx-auto px-1">
-            “Tu camino de fe continúa. Descubre cómo puedes poner tus talentos al servicio de los demás y ayudar a transformar nuestra comunidad”.
-          </p>
-
-          {/* Acciones principales: comenzar de verdad o explorar los pilares */}
-          <div className="mission-actions pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-xl mx-auto">
-            <button
-              type="button"
-              onClick={() => onStartSurvey()}
-              className="mission-primary-action w-full sm:w-auto sm:min-w-56 text-sm sm:text-base py-3.5 px-7 rounded-xl font-bold bg-[#214C3B] hover:bg-[#16382D] text-white flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.99] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#214C3B] focus-visible:ring-offset-2"
-            >
-              <span>INICIAR ENCUESTA</span>
-              <ArrowRight className="w-4 h-4" />
+    <div className="mission-home">
+      <section className="mission-hero" aria-labelledby="mission-title">
+        <div className="mission-hero-copy">
+          <span className="mission-eyebrow"><span className="mission-eyebrow-dot" /> PASTORAL JUVENIL · TARIJA</span>
+          <p className="mission-kicker"><Church size={15} aria-hidden="true" /> Parroquia San Martín de Porres</p>
+          <h1 id="mission-title">Jóvenes en <span>misión.</span></h1>
+          <p className="mission-lead">Tu fe sigue creciendo cuando se convierte en servicio.</p>
+          <p className="mission-description">Descubre tus talentos, elige una forma de ayudar y construyamos juntos una comunidad más fraterna, solidaria y cuidadosa de nuestra Casa Común.</p>
+          <div className="mission-actions">
+            <button type="button" onClick={() => onStartSurvey()} className="mission-button mission-button-primary">
+              Comenzar encuesta <ArrowRight size={18} aria-hidden="true" />
             </button>
-            <button
-              type="button"
-              onClick={handleDiscoverMissionClick}
-              className="w-full sm:w-auto text-sm py-3.5 px-6 rounded-xl font-semibold border border-[#214C3B]/25 bg-white text-[#214C3B] hover:bg-[#E4EEE8] flex items-center justify-center gap-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#214C3B] focus-visible:ring-offset-2"
-            >
-              <span>CONOCER LOS PILARES</span>
-              <ChevronDown className="w-4 h-4" />
+            <button type="button" onClick={() => pillarsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="mission-button mission-button-secondary">
+              Conocer las misiones <ChevronDown size={17} aria-hidden="true" />
             </button>
           </div>
+          <div className="mission-scripture"><BookOpen size={16} aria-hidden="true" /><span>«Aquí estoy, Señor, envíame a mí» <b>· Isaías 6,8</b></span></div>
+        </div>
 
-          {/* Frase Inspiradora Pastoral */}
-          <div className="mission-scripture pt-2 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#59645D] font-serif italic">
-            <Sparkles className="w-3.5 h-3.5 text-[#214C3B] shrink-0" />
-            <span>«Aquí estoy, Señor, envíame a mí» (Is 6,8) • Pastoral de Confirmación 2026</span>
-          </div>
-
+        <div className="mission-hero-art" aria-label="Tres formas de poner la fe al servicio de la comunidad">
+          <div className="mission-art-orbit mission-art-orbit-one" />
+          <div className="mission-art-orbit mission-art-orbit-two" />
+          <div className="mission-art-center"><span className="mission-cross">✝</span><span>La fe se vive<br /><strong>sirviendo</strong></span></div>
+          <div className="mission-float-card mission-float-top"><span className="mission-float-icon"><Sprout size={20} /></span><span><b>Cuidar</b><small>Nuestra Casa Común</small></span></div>
+          <div className="mission-float-card mission-float-right"><span className="mission-float-icon"><HeartHandshake size={20} /></span><span><b>Acompañar</b><small>Con corazón fraterno</small></span></div>
+          <div className="mission-float-card mission-float-bottom"><span className="mission-float-icon"><Sparkles size={20} /></span><span><b>Transformar</b><small>Con esperanza</small></span></div>
+          <div className="mission-art-note"><CheckCircle2 size={15} /> Pequeñas acciones, gran esperanza</div>
         </div>
       </section>
 
-      {/* 2. TRES TARJETAS PRINCIPALES */}
-      <section ref={pillarsSectionRef} className="mission-pillars space-y-6 sm:space-y-8 scroll-mt-24">
-        
-        {/* Cabecera de la sección */}
-        <div className="text-center max-w-2xl mx-auto space-y-1.5 px-2">
-          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#214C3B] bg-[#E4EEE8] px-3.5 py-1 rounded-full border border-[#214C3B]/20">
-            Campos de Acción Pastoral
-          </span>
-          <h2 className="text-xl sm:text-3xl font-serif font-black text-[#303632] leading-tight">
-            Conoce los Tres Pilares de Nuestra Misión
-          </h2>
-          <p className="text-xs sm:text-sm text-[#737B76]">
-            Explora las fotografías y detalles de cada misión, reflexiona en la cita bíblica y elige dónde deseas servir en Tarija.
-          </p>
+      <section ref={pillarsSectionRef} id="pilares-mision" className="mission-pillars" aria-labelledby="pillars-title">
+        <div className="mission-section-heading">
+          <span className="mission-section-label">Tres caminos · Una misma fe</span>
+          <h2 id="pillars-title">¿Dónde te gustaría <span>servir?</span></h2>
+          <p>Cada talento cuenta. Conoce las propuestas y elige la misión que más conecta contigo.</p>
         </div>
 
-        {/* Grid de las 3 Tarjetas Principales */}
-        <div className="mission-pillar-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+        <div className="mission-pillar-grid">
           {PRIMARY_PILLAR_KEYS.map((key) => {
             const pillar = PILLARS[key];
             if (!pillar) return null;
-
+            const Icon = pillarIcon(pillar.id);
             return (
-              <div
-                key={pillar.id}
-                className="mission-pillar-card bg-white rounded-2xl sm:rounded-3xl border border-neutral-200 shadow-soft hover:shadow-elevated transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1"
-              >
-                {/* Fotografía Real y Pertinente */}
-                <div className="relative">
-                  <PillarImage
-                    src={pillar.imageUrl}
-                    alt={pillar.imageAlt}
-                    pillarNumber={pillar.number}
-                    pillarTitle={pillar.title}
-                    color={pillar.color}
-                    className="h-48 sm:h-60"
-                  />
+              <article key={pillar.id} className="mission-pillar-card">
+                <div className="mission-pillar-image-wrap">
+                  <PillarImage src={pillar.imageUrl} alt={pillar.imageAlt} pillarNumber={pillar.number} pillarTitle={pillar.title} color={pillar.color} className="mission-pillar-image" />
                 </div>
-
-                {/* Cuerpo de la tarjeta */}
-                <div className="p-4 sm:p-7 flex-1 flex flex-col justify-between space-y-4 sm:space-y-6">
-                  
-                  {/* Encabezado del Pilar */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold tracking-widest uppercase text-[#214C3B]">
-                        PILAR {pillar.number}
-                      </span>
-                      <span className="text-[11px] text-[#737B76] font-mono">
-                        SMP Tarija
-                      </span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-serif font-black text-[#303632] group-hover:text-[#214C3B] transition-colors">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-xs font-medium text-[#214C3B] italic">
-                      "{pillar.subtitle}"
-                    </p>
-
-                    <p className="text-sm text-[#737B76] leading-relaxed pt-1">
-                      {pillar.description}
-                    </p>
-                  </div>
-
-                  {/* Qué necesidad busca atender */}
-                  <div className="p-3.5 bg-[#F1F3F1] rounded-xl border border-[#737B76]/15 space-y-1">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#303632] flex items-center gap-1.5">
-                      <Church className="w-3.5 h-3.5 text-[#214C3B]" />
-                      Necesidad que busca atender:
-                    </span>
-                    <p className="text-xs text-[#737B76] leading-relaxed">
-                      {pillar.needAddressed}
-                    </p>
-                  </div>
-
-                  {/* Ejemplos de acciones */}
-                  <div className="space-y-2">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#737B76]">
-                      Ejemplos de acciones:
-                    </span>
-                    <ul className="space-y-1.5 text-xs text-[#303632]">
-                      {pillar.activities.map((act, aIdx) => (
-                        <li key={aIdx} className="flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#214C3B] mt-1.5 shrink-0" />
-                          <span>{act}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Cita bíblica y reflexión */}
-                  <div className="p-3.5 bg-white rounded-xl border border-[#737B76]/20 text-xs space-y-2">
-                    <div className="flex items-center gap-1.5 text-[#303632] font-bold font-serif">
-                      <BookOpen className="w-3.5 h-3.5 text-[#214C3B] shrink-0" />
-                      <span>{pillar.bibleQuote}</span>
-                    </div>
-                    {pillar.bibleVerseText && (
-                      <p className="italic text-[#737B76] font-serif text-[11px] border-l-2 border-[#214C3B] pl-2">
-                        {pillar.bibleVerseText}
-                      </p>
-                    )}
-                    <p className="text-[11px] text-[#303632] leading-relaxed bg-[#F1F3F1] p-2 rounded border border-[#737B76]/15 font-medium">
-                      “{pillar.reflection}”
-                    </p>
-                  </div>
-
-                  {/* Botón: VER Y PARTICIPAR */}
-                  <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => handleOpenPillarDetail(pillar)}
-                      className="w-full btn-primary py-3 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-colors shadow-xs"
-                    >
-                      <span>VER Y PARTICIPAR</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-
+                <div className="mission-pillar-body">
+                  <span className="mission-pillar-icon"><Icon size={19} aria-hidden="true" /></span>
+                  <h3>{pillar.title}</h3>
+                  <p className="mission-pillar-subtitle">{pillar.subtitle}</p>
+                  <p className="mission-pillar-description">{pillar.description}</p>
+                  <div className="mission-pillar-verse"><BookOpen size={15} /><span>{pillar.bibleQuote}</span></div>
+                  <button type="button" className="mission-pillar-link" onClick={() => setSelectedPillarForModal(pillar)}>
+                    Explorar esta misión <ArrowRight size={17} />
+                  </button>
                 </div>
-
-              </div>
+              </article>
             );
           })}
         </div>
-
       </section>
 
-      {/* Modal de Detalle (Requisito 3) */}
-      {selectedPillarForModal && (
-        <PillarDetailModal
-          pillar={selectedPillarForModal}
-          isOpen={true}
-          onClose={() => setSelectedPillarForModal(null)}
-          onSelectPillar={handleChooseMission}
-        />
-      )}
+      <section className="mission-bottom-cta">
+        <div className="mission-bottom-mark"><HeartHandshake size={24} /></div>
+        <div><p className="mission-bottom-eyebrow">TU PARTICIPACIÓN IMPORTA</p><h2>Hay muchas formas de hacer el bien.</h2><p>Responde la encuesta para ayudarnos a preparar una misión que tenga sentido para nuestra comunidad.</p></div>
+        <button type="button" className="mission-button mission-button-light" onClick={() => onStartSurvey()}>Quiero participar <ArrowRight size={17} /></button>
+      </section>
 
+      {selectedPillarForModal && (
+        <PillarDetailModal pillar={selectedPillarForModal} isOpen={true} onClose={() => setSelectedPillarForModal(null)} onSelectPillar={handleChooseMission} />
+      )}
     </div>
   );
 };

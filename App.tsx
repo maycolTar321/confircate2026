@@ -69,11 +69,11 @@ export function App() {
     setPublicSubView('hero');
     // Desplazar suavemente a los pilares
     setTimeout(() => {
-      const pillarsEl = document.querySelector('section.scroll-mt-24');
+      const pillarsEl = document.querySelector('#pilares-mision');
       if (pillarsEl) {
         pillarsEl.scrollIntoView({ behavior: 'smooth' });
       } else {
-        window.scrollTo({ top: 600, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 100);
   };

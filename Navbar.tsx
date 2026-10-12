@@ -11,16 +11,16 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange, onOpenAdminAuth, surveyCount }) => {
   return (
-    <header className="mission-navbar sticky top-0 z-40 bg-white/95 backdrop-blur-md text-[#303632] border-b border-[#DCE5DF] shadow-xs">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md text-[#303632] border-b border-[#737B76]/20 shadow-xs">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between min-h-[3.65rem] py-2 sm:min-h-[4.5rem] sm:py-0">
+        <div className="flex items-center justify-between min-h-[3.75rem] py-2 sm:h-20 sm:py-0">
           
           {/* Logo & Identity */}
           <div 
             onClick={() => onViewChange('public')}
             className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer group min-w-0 flex-1 mr-2"
           >
-            <div className="mission-logo-frame w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white border border-[#DCE5DF] p-1 flex items-center justify-center shadow-xs group-hover:scale-[1.03] transition-transform shrink-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#F1F3F1] border border-[#214C3B]/20 p-1 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0">
               <img
                 src="/logo.png"
                 alt="Logo Catequistas San Martín de Porres"
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onViewChange, onOpe
               />
             </div>
             <div className="min-w-0 flex-1">
-              <span className="text-[9px] sm:text-[10px] text-[#214C3B] font-bold tracking-[0.12em] uppercase truncate block">
+              <span className="text-[9px] sm:text-[11px] text-[#214C3B] font-bold tracking-widest uppercase truncate block">
                 {APP_INFO.parish} • Tarija
               </span>
               <span className="font-serif font-black text-sm sm:text-base md:text-lg tracking-tight text-[#303632] leading-tight truncate block group-hover:text-[#214C3B] transition-colors">
