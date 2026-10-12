@@ -31,23 +31,23 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
   };
 
   return (
-    <div className="space-y-8 sm:space-y-14 py-2 sm:py-4">
+    <div className="mission-home space-y-8 sm:space-y-12 py-2 sm:py-5">
       
       {/* 1. PORTADA */}
-      <section className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#F1F3F1] via-white to-[#F1F3F1] text-[#303632] shadow-soft p-5 sm:p-10 lg:p-14 border border-[#737B76]/15">
+      <section className="mission-hero relative overflow-hidden rounded-2xl sm:rounded-[2rem] text-[#303632] p-5 sm:p-9 lg:p-12 border border-[#DCE5DF]">
         
         {/* Luces sutiles de fondo en verde bosque suave */}
-        <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#E4EEE8]/70 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-[#E4EEE8]/50 rounded-full blur-3xl pointer-events-none" />
+        <div className="mission-orb mission-orb--one absolute -top-24 -right-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" />
+        <div className="mission-orb mission-orb--two absolute -bottom-24 -left-24 w-80 h-80 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-4 sm:space-y-6">
+        <div className="mission-hero__content relative z-10 max-w-4xl mx-auto text-center space-y-4 sm:space-y-5">
           
           {/* Bloque Destacado de Parroquia */}
           <div className="flex flex-col items-center justify-center gap-1.5">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#214C3B] bg-[#E4EEE8] px-3.5 py-1 rounded-full border border-[#214C3B]/15">
+            <span className="mission-eyebrow text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#214C3B] bg-[#E4EEE8] px-3.5 py-1.5 rounded-full border border-[#214C3B]/15">
               Comunidad Eclesial & Pastoral Juvenil
             </span>
-            <h2 className="text-xl sm:text-3xl md:text-4xl font-serif font-black tracking-wide text-[#303632] leading-tight mt-1">
+            <h2 className="mission-parish-title text-lg sm:text-2xl md:text-3xl font-serif font-black tracking-wide text-[#303632] leading-tight mt-1">
               PARROQUIA SAN MARTÍN DE PORRES
             </h2>
             <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-[#737B76] font-medium">
@@ -59,28 +59,28 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
 
           {/* Título Principal */}
           <div className="space-y-1.5 pt-2 border-t border-[#737B76]/15">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight text-[#303632] leading-tight">
+            <h1 className="mission-title text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight text-[#303632] leading-tight">
               JÓVENES EN MISIÓN SMP
             </h1>
 
             {/* Lema */}
-            <p className="text-base sm:text-xl lg:text-2xl font-serif font-extrabold italic text-[#214C3B] tracking-wider flex items-center justify-center gap-1.5">
+            <p className="mission-motto text-base sm:text-xl lg:text-2xl font-serif font-extrabold italic text-[#214C3B] tracking-wide flex items-center justify-center gap-2">
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#214C3B] shrink-0" />
               <span>LA FE SE VIVE SIRVIENDO.</span>
             </p>
           </div>
 
           {/* Texto de la Portada */}
-          <p className="text-xs sm:text-base lg:text-lg text-[#737B76] font-normal leading-relaxed max-w-2xl mx-auto px-1">
+          <p className="mission-description text-sm sm:text-base lg:text-lg text-[#59645D] font-normal leading-relaxed max-w-2xl mx-auto px-1">
             “Tu camino de fe continúa. Descubre cómo puedes poner tus talentos al servicio de los demás y ayudar a transformar nuestra comunidad”.
           </p>
 
           {/* Acciones principales: comenzar de verdad o explorar los pilares */}
-          <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-xl mx-auto">
+          <div className="mission-actions pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 max-w-xl mx-auto">
             <button
               type="button"
               onClick={() => onStartSurvey()}
-              className="w-full sm:w-auto sm:min-w-56 text-sm sm:text-base py-3.5 px-7 rounded-xl font-bold bg-[#214C3B] hover:bg-[#16382D] text-white flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.99] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#214C3B] focus-visible:ring-offset-2"
+              className="mission-primary-action w-full sm:w-auto sm:min-w-56 text-sm sm:text-base py-3.5 px-7 rounded-xl font-bold bg-[#214C3B] hover:bg-[#16382D] text-white flex items-center justify-center gap-2 shadow-sm hover:shadow-md active:scale-[0.99] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#214C3B] focus-visible:ring-offset-2"
             >
               <span>INICIAR ENCUESTA</span>
               <ArrowRight className="w-4 h-4" />
@@ -96,7 +96,7 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
           </div>
 
           {/* Frase Inspiradora Pastoral */}
-          <div className="pt-1 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-[#737B76] font-serif italic">
+          <div className="mission-scripture pt-2 flex items-center justify-center gap-2 text-xs sm:text-sm text-[#59645D] font-serif italic">
             <Sparkles className="w-3.5 h-3.5 text-[#214C3B] shrink-0" />
             <span>«Aquí estoy, Señor, envíame a mí» (Is 6,8) • Pastoral de Confirmación 2026</span>
           </div>
@@ -105,7 +105,7 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
       </section>
 
       {/* 2. TRES TARJETAS PRINCIPALES */}
-      <section ref={pillarsSectionRef} className="space-y-6 sm:space-y-8 scroll-mt-20">
+      <section ref={pillarsSectionRef} className="mission-pillars space-y-6 sm:space-y-8 scroll-mt-24">
         
         {/* Cabecera de la sección */}
         <div className="text-center max-w-2xl mx-auto space-y-1.5 px-2">
@@ -121,7 +121,7 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
         </div>
 
         {/* Grid de las 3 Tarjetas Principales */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8 items-stretch">
+        <div className="mission-pillar-grid grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 items-stretch">
           {PRIMARY_PILLAR_KEYS.map((key) => {
             const pillar = PILLARS[key];
             if (!pillar) return null;
@@ -129,7 +129,7 @@ export const HeroPresentation: React.FC<HeroPresentationProps> = ({ onStartSurve
             return (
               <div
                 key={pillar.id}
-                className="bg-white rounded-2xl sm:rounded-3xl border border-neutral-200 shadow-soft hover:shadow-elevated transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1"
+                className="mission-pillar-card bg-white rounded-2xl sm:rounded-3xl border border-neutral-200 shadow-soft hover:shadow-elevated transition-all duration-300 flex flex-col overflow-hidden group hover:-translate-y-1"
               >
                 {/* Fotografía Real y Pertinente */}
                 <div className="relative">
